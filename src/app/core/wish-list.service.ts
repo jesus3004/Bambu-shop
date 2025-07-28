@@ -34,7 +34,7 @@ export class WishListService {
     if (user) {
       const ref = doc(this.firestore, `wishlists/${user.uid}/items/${product.id}`);
       setDoc(ref, product, { merge: true }).then(() => {
-        this.loadWishlist(); // 🔄 vuelve a cargar después de guardar
+        this.loadWishlist();
       });
     }
   });
@@ -45,7 +45,7 @@ export class WishListService {
     if (user) {
       const ref = doc(this.firestore, `wishlists/${user.uid}/items/${productId}`);
       deleteDoc(ref).then(() => {
-        this.loadWishlist(); // 🔄 vuelve a cargar después de eliminar
+        this.loadWishlist();
       });
     }
   });

@@ -17,23 +17,13 @@ import { StateService } from '../../core/state.service';
                 stroke-linejoin="miter"
             ></path>
         </svg>
-        <!-- Fondo SVG decorativo -->
         <div class="min-h-screen bg-green- flex flex-col items-center justify-center text-center px-4 relative">
-            <!-- Logo arriba -->
             <img src="img/logo.png" alt="Logo Bambu" class="w-52 mb-6 absolute top-6 left-6 sm:left-10" />
-
-            <!-- Imagen ilustrativa central -->
             <div class="relative w-full max-w-xl mb-8 rounded-full overflow-hidden bg-gradient-to-t from-green-500 to-emerald-50 p-12 shadow-lg ring-4 ring-green-300">
                 <img src="img/error/asset-error.svg" alt="404 ilustración" class="w-full h-auto object-contain transition-transform duration-300 hover:scale-105" />
             </div>
-
-            <!-- Título -->
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Esta página no existe</h1>
-
-            <!-- Descripción -->
             <p class="text-gray-600 text-base md:text-lg mb-8">Lo sentimos, no pudimos encontrar lo que estás buscando. Tal vez el enlace está roto o fue eliminado.</p>
-
-            <!-- Botón -->
             <p-button (click)="gotoHome()" icon="pi pi-home" label="Volver al inicio" severity="primary" class="px-6 py-3 text-base"></p-button>
         </div>
     `

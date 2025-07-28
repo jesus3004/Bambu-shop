@@ -40,7 +40,7 @@ export class AuthService {
         return createUserWithEmailAndPassword(this.afAuth, email, password).then((cred) => {
             if (cred.user) {
                 sendEmailVerification(cred.user);
-                return cred; // envía correo y termina
+                return cred;
             } else {
                 throw new Error('Usuario no creado correctamente');
             }
@@ -54,7 +54,7 @@ export class AuthService {
     login(email: string, password: string) {
         return signInWithEmailAndPassword(this.afAuth, email, password).then(async (cred) => {
             if (cred.user) {
-                await cred.user.reload(); // 🔄 fuerza estado actualizado
+                await cred.user.reload(); 
                 if (cred.user.emailVerified) {
                     this.userSubject.next({ uid: cred.user.uid, email: cred.user.email });
                 } else {
@@ -73,8 +73,8 @@ export class AuthService {
         return new Promise((resolve) => {
             onAuthStateChanged(this.afAuth, async (user) => {
                 if (user) {
-                    await user.reload(); // recarga la información desde Firebase
-                    resolve(this.afAuth.currentUser); // retorna el usuario actualizado
+                    await user.reload(); 
+                    resolve(this.afAuth.currentUser); 
                 } else {
                     resolve(null);
                 }

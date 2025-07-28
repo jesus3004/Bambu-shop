@@ -29,7 +29,6 @@ import { CartItem } from '../../models/cart-item.model';
         <div class="hidden lg:flex">
             <div class="flex items-center gap-8 md:px-1 lg:px-5">
                 <ng-container *ngIf="!(authService.user$ | async); else userLogged">
-                    <!-- Iniciar sesión -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" [routerLink]="['/auth/login']">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-user scale-150"></i>
@@ -40,7 +39,6 @@ import { CartItem } from '../../models/cart-item.model';
                         </div>
                     </div>
 
-                    <!-- Registrarse -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" [routerLink]="['/auth/register']">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-user-plus scale-150"></i>
@@ -51,10 +49,7 @@ import { CartItem } from '../../models/cart-item.model';
                         </div>
                     </div>
                 </ng-container>
-
-                <!-- Mostrar solo si el usuario está autenticado -->
                 <ng-template #userLogged>
-                    <!-- Perfil (solo primer nombre) -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-user scale-150"></i>
@@ -66,7 +61,6 @@ import { CartItem } from '../../models/cart-item.model';
                             </span>
                         </div>
                     </div>
-                    <!-- Wishlist -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" [routerLink]="['/Bambu-shop/wish']">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-heart scale-150"></i>
@@ -76,8 +70,6 @@ import { CartItem } from '../../models/cart-item.model';
                             <span class="font-semibold text-gray-500 text-sm" *ngIf="(state.wishlist$ | async)?.length as count">{{ count }}-ITEMS</span>
                         </div>
                     </div>
-
-                    <!-- Cart -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" (click)="carrito_draw = true">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-shopping-cart scale-150"></i>
@@ -110,7 +102,6 @@ import { CartItem } from '../../models/cart-item.model';
                     <span class="text-2xl font-bold tracking-tight"> Bambo<span class="text-green-600"> Shop</span> </span>
                 </div>
             </div>
-            <!-- Acciones: usuario, wishlist, carrito -->
             <div class="flex items-center gap-4">
                 <ng-container *ngIf="!(authService.user$ | async); else loggedIn">
                     <div class="relative cursor-pointer" [routerLink]="['/auth/login']">
@@ -121,7 +112,6 @@ import { CartItem } from '../../models/cart-item.model';
                     </div>
                 </ng-container>
 
-                <!-- Iconos cuando SÍ está logueado -->
                 <ng-template #loggedIn>
                     <div class="relative" [routerLink]="['/Bambu-shop/wish']">
                         <i class="pi pi-heart text-2xl"></i>

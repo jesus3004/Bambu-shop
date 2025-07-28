@@ -22,13 +22,10 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    // Mostrar el loader de la app (si deseas transición interna también)
     this.state.setLoading(true);
 
-    // Simula carga inicial
     setTimeout(() => {
       this.state.setLoading(false);
-      // Oculta el loader de index.html
       const loader = document.getElementById('global-loader');
       if (loader) loader.style.display = 'none';
     }, 1500);

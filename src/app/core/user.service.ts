@@ -23,7 +23,6 @@ export class UserService {
         );
     }
 
-    /** Actualiza el perfil */
     updateUserProfile(data: Partial<User>) {
         return this.authService.user$.pipe(take(1)).subscribe((user) => {
             if (user) {

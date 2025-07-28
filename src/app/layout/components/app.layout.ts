@@ -50,50 +50,28 @@ import { AppMenu } from './app.menu';
     template: `
         <div class="layout-container flex flex-col h-screen" [ngClass]="containerClass">
             <div class="hidden lg:block ">
-                <!-- Main header -->
                 <div class="w-full flex items-center justify-between px-3 lg:px-8 py-4 bg-gray-50 shadow-sm">
-                    <!-- Logo -->
                     <div class="flex items-center gap-2">
                         <img src="img/logo.png" class="cursor-pointer" alt="Logo" width="130" [routerLink]="['/']" />
                     </div>
-                    <!-- Search -->
                     <div class="flex-1 md:px-3 lg:px-11">
                         <app-sherch></app-sherch>
                     </div>
-                    <!-- Account actions -->
                      <div class="flex items-center">
                          <app-topbar> </app-topbar>
                      </div>
                 </div>
-                
-
-                <!-- Navigation
-                <div class="w-full flex items-center gap-4 px-6 py-3 border-b bg-gray-50 shadow-sm">
-                    <nav class="flex-1 flex gap-8">
-                        <a href="#" class="text-gray-700 hover:text-green-600 font-medium flex items-center gap-1">Home <i class="pi pi-angle-down"></i></a>
-                        <a href="#" class="text-gray-700 hover:text-green-600 font-medium flex items-center gap-1">Categories <i class="pi pi-angle-down"></i></a>
-                        <a href="#" class="text-gray-700 hover:text-green-600 font-medium flex items-center gap-1">Products <i class="pi pi-angle-down"></i></a>
-                        <a href="#" class="text-gray-700 hover:text-green-600 font-medium flex items-center gap-1">Blog <i class="pi pi-angle-down"></i></a>
-                        <a href="#" class="text-gray-700 hover:text-green-600 font-medium flex items-center gap-1">Others <i class="pi pi-angle-down"></i></a>
-                        <a href="#" class="text-gray-700 hover:text-green-600 font-medium flex items-center gap-1"><i class="pi pi-percentage"></i> Offers</a>
-                    </nav>
-                </div> -->
             </div>
 
             <div class="block lg:hidden">
                 <div class="w-full bg-gray-50 flex flex-col shadow">
-                    <!-- Top Header: Mobile -->
                     <div class="flex items-center justify-between px-4 py-2 md:hidden">
-                        <!-- Menú hamburguesa -->
                         <app-menu></app-menu>
-                        <!-- Logo -->
                          <div class="w-full">
                              <app-topbar> </app-topbar>
                          </div>
                     
                     </div>
-
-                    <!-- Barra de búsqueda -->
                     <div class="px-4 pb-4 pt-1 w-full md:hidden">
                         <div class="w-full flex items-center">
                            <app-sherch class="w-full"></app-sherch>
@@ -110,21 +88,6 @@ import { AppMenu } from './app.menu';
     `
 })
 export class AppLayout {
-    categoryOptions = [
-        { label: 'All Categories', value: 'all' },
-        { label: 'Fruits', value: 'fruits' },
-        { label: 'Vegetables', value: 'vegetables' },
-        { label: 'Drinks', value: 'drinks' }
-        // ... otras categorías
-    ];
-
-    cityOptions = [
-        { label: 'New York', value: 'ny' },
-        { label: 'London', value: 'ldn' },
-        { label: 'CDMX', value: 'cdmx' }
-        // ... otras ciudades
-    ];
-
     items: MenuItem[] | undefined;
     items_login: MenuItem[] | undefined;
     menu_draw: boolean = false;
@@ -146,60 +109,6 @@ export class AppLayout {
         this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
             
         });
-
-        this.items = [
-            {
-                separator: true
-            },
-            {
-                label: 'Documents',
-                items: [
-                    {
-                        label: 'New',
-                        icon: 'pi pi-plus',
-                        shortcut: '⌘+N'
-                    },
-                    {
-                        label: 'Search',
-                        icon: 'pi pi-search',
-                        shortcut: '⌘+S'
-                    }
-                ]
-            },
-            {
-                label: 'Profile',
-                items: [
-                    {
-                        label: 'Settings',
-                        icon: 'pi pi-cog',
-                        shortcut: '⌘+O'
-                    },
-                    {
-                        label: 'Messages',
-                        icon: 'pi pi-inbox',
-                        badge: '2'
-                    },
-                    {
-                        label: 'Logout',
-                        icon: 'pi pi-sign-out',
-                        shortcut: '⌘+Q'
-                    }
-                ]
-            },
-            {
-                separator: true
-            }
-        ];
-        this.items_login = [
-            {
-                label: 'Iniciar sesion',
-                icon: 'pi pi-user'
-            },
-            {
-                label: 'Registrarse',
-                icon: 'pi pi-user-plus'
-            }
-        ];
     }
 
     get containerClass() {

@@ -27,8 +27,6 @@ export class CartService {
                 getDoc(ref).then((snapshot) => {
                     const currentQuantity = snapshot.exists() ? (snapshot.data()?.['quantity'] ?? 0) : 0;
                     let newQuantity = currentQuantity + quantity;
-
-                    // 🔒 Limitar al stock máximo
                     if (newQuantity > product.stock) {
                         newQuantity = product.stock;
                     }

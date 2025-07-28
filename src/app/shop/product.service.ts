@@ -16,7 +16,6 @@ export class ProductService {
         private state: StateService
     ) {}
 
-    /** Trae todos los productos (hasta 100) */
     fetchProducts(): Observable<Product[]> {
         const url = `${this.API_BASE}?limit=0`;
 
@@ -27,7 +26,6 @@ export class ProductService {
         );
     }
 
-    /** Busca productos por nombre o categoría */
     searchProducts(query: string): Observable<Product[]> {
         if (!query.trim()) return of([]);
 
@@ -46,7 +44,6 @@ export class ProductService {
         return this.http.get<Category[]>(url).pipe(catchError(() => of([])));
     }
 
-    /** Obtiene todas las categorías */
     fetchCategories(): Observable<string[]> {
         const url = `${this.API_BASE}/categories`;
 

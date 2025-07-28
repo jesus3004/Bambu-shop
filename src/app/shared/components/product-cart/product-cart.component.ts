@@ -31,7 +31,6 @@ export class ProductCartComponent {
     private state: StateService,
     private authService:AuthService
   ) {
-    // Obtenemos la lista de IDs de productos en wishlist
     this.state.wishlist$.subscribe(wishlist => {
        this.wishlistIds = wishlist.map(p => Number(p.id));
     });

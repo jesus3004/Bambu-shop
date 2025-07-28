@@ -34,7 +34,6 @@ export interface Product {
 }
 
 export interface Review {
-  // Ejemplo de campos para un review; ajusta según tu modelo real
   reviewerName?: string;
   comment?: string;
   rating?: number;

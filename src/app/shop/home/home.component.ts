@@ -85,12 +85,12 @@ export class HomeComponent {
     }
     responsiveOptions = [
         {
-            breakpoint: '1200px', // Tablets grandes
+            breakpoint: '1200px',
             numVisible: 4,
             numScroll: 1
         },
         {
-            breakpoint: '1024px', // Tablets medianas
+            breakpoint: '1024px',
             numVisible: 3,
             numScroll: 1
         },

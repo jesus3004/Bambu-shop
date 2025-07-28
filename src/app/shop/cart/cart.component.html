@@ -1,7 +1,5 @@
 <div class="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
-    <!-- Columna izquierda (Productos o mensaje vacío) -->
     <div *ngIf="cartItems.length > 0; else emptyCartWrapper" class="lg:col-span-8 order-2 lg:order-1">
-        <!-- Tabla de productos -->
         <p-table *ngIf="cartItems.length > 0;" [value]="cartItems" responsiveLayout="scroll" scrollHeight="flex" class="min-w-full">
             <ng-template pTemplate="header">
                 <tr>
@@ -43,11 +41,9 @@
             </ng-template>
         </p-table>
 
-        <!-- Botones y resumen inferior (solo con productos) -->
         <div *ngIf="cartItems.length > 0" class="flex flex-col-reverse lg:flex-row justify-between items-center mt-6 gap-4">
             <a routerLink="/" class="text-lg text-gray-600 underline">Seguir comprando</a>
 
-            <!-- Resumen móvil -->
             <div class="lg:hidden w-full">
                 <div class="bg-white shadow rounded-lg p-6 border">
                     <h2 class="text-lg font-semibold mb-4">Resumen</h2>
@@ -76,11 +72,9 @@
             <button pButton label="Finalizar Compra" class="p-button-success w-full lg:w-auto"></button>
         </div>
 
-        <!-- 🛒 Carrito vacío -->
         
     </div>
 
-    <!-- Columna derecha (Resumen solo si hay productos) -->
     <div *ngIf="cartItems.length > 0" class="lg:col-span-4 hidden lg:block order-1 lg:order-2">
         <div class="bg-white shadow rounded-lg p-6 border">
             <h2 class="text-lg font-semibold mb-4">Resumen</h2>
@@ -111,7 +105,6 @@
     </div>
 </div>
 
-<!-- Productos sugeridos -->
 <div class="container mx-auto px-4 py-16" *ngIf="recommendedProducts.length > 0">
     <div class="mt-10">
         <h2 class="text-2xl font-bold text-gray-800 mb-6">También te puede interesar</h2>
@@ -126,7 +119,6 @@
 </div>
 
 
-<!-- Contenedor que ocupa toda la izquierda cuando el carrito está vacío -->
 <ng-template #emptyCartWrapper>
   <div class="lg:col-span-12 order-2 lg:order-1 flex items-center justify-center min-h-[70vh] w-full">
     <div class="bg-white rounded-xl shadow p-10 text-center max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl w-full">

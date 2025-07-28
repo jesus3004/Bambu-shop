@@ -80,9 +80,7 @@ export class RegisterComponent {
                 suburb: this.user.suburb!
             };
 
-            // Guardar en Firestore
             await setDoc(doc(this.firestore, 'users', uid), userData);
-            // Actualizar estado global si lo deseas
             this.state.setUser(cred.user);
 
             this.showConfirmation = true;
@@ -106,13 +104,10 @@ export class RegisterComponent {
             if (user?.emailVerified) {
                 clearInterval(this.intervalId);
 
-                // 🔄 Notificamos al AuthService que hay un usuario verificado
                 this.authService.updateUserState(user);
 
-                // (Opcional) Actualizamos el estado global, si lo usas en otros lugares
                 this.state.setUser(user);
 
-                // Redirigir a la página principal o la que necesites
                 this.state.setLoading(true)
                 setTimeout(() => {
                     this.state.setLoading(false)  

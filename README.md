@@ -8,7 +8,7 @@
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/bambu-shop.git
+   git clone https://github.com/jesus3004/Bambu-shop.git
    cd bambu-shop
    ```
 

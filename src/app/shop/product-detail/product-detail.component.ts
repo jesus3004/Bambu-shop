@@ -67,12 +67,11 @@ export class ProductDetailComponent {
         private cartService: CartService
     ) {
         this.rote.queryParams.subscribe((params) => {
-            this.fromPage = params['from'] || 'Bambu-shop'; // Valor por defecto
+            this.fromPage = params['from'] || 'Bambu-shop';
         });
         this.rote.params.subscribe((params) => {
             this.id_product = params['uuid'];
 
-            // Asegúrate de que se han cargado los productos antes de buscarlos
             this.lis_product = this.state.products$;
             this.currentCart = this.state.cart$;
             this.lis_product.subscribe((products) => {

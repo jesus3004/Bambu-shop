@@ -102,7 +102,7 @@ export class LoginComponent {
     }
 
     startCountdown() {
-        this.countdown = this.cooldown / 1000; // Inicia en 60 segundos
+        this.countdown = this.cooldown / 1000;
         this.countdownInterval = setInterval(() => {
             this.countdown--;
             console.log(this.countdown);

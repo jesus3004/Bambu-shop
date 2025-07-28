@@ -1,6 +1,4 @@
 <div class="flex flex-col gap-8">
-
-  <!-- Carrusel de categorías -->
   <div class="w-full">
     <p-carousel [value]="categories" [numVisible]="5" [responsiveOptions]="responsiveOptions" [numScroll]="1" [circular]="false" [autoplayInterval]="0" [showNavigators]="true" [showIndicators]="false">
       <ng-template pTemplate="item" let-category>
@@ -10,15 +8,11 @@
       </ng-template>
     </p-carousel>
   </div>
-
-  <!-- Productos -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
     <div *ngFor="let product of paginatedProducts">
       <app-product-cart [product]="product" fromURL="Bambu-shop"></app-product-cart>
     </div>
   </div>
-
-  <!-- Paginador -->
   <div class="grid grid-cols-1 w-full">
     <div class="flex w-full mt-4">
       <p-paginator *ngIf="products.length > 0" [rows]="rows" [totalRecords]="products.length"
