@@ -6,8 +6,9 @@
 ## 🚀 Demo en vivo
 
 Puedes probar la aplicación en el siguiente enlace:
-
-👉 [https://ecomers---bambu-mobile.firebaseapp.com/Bambu-shop](https://ecomers---bambu-mobile.firebaseapp.com/Bambu-shop)
+```bash
+https://ecomers---bambu-mobile.firebaseapp.com/Bambu-shop
+   ```
 ---
 ## 📁 Pasos para ejecutar el proyecto localmente
 
