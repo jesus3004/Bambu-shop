@@ -1,0 +1,52 @@
+<div class="mb-[15px] p-[15px] flex overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+    <div class="flex grow-[1] basis-[20%] items-center">
+        <img [src]="product?.thumbnail" class="w-full" alt="product" />
+    </div>
+    <div class="relative grow-[1] basis-[70%] pl-[15px] overflow-hidden">
+        <a class="cart-pro-title w-full pr-[30px] text-[#777] whitespace-normal overflow-hidden text-ellipsis block text-sm leading-[18px] font-normal">{{ product?.title }}</a>
+        <div class="flex mt-2" [ngClass]="{ 'text-green-500': product!.price > product!.discountPercentage, 'text-red-500': !(product!.price > product!.discountPercentage) }">
+            <i class="pi scale-75 mr-1" [ngClass]="{ 'pi-arrow-circle-down': product!.price > product!.discountPercentage, 'pi-arrow-circle-up': !(product!.price > product!.discountPercentage) }"></i>
+            <span class="text-xs">{{ incemento(product!.price, product!.discountPercentage) }} de precio</span>
+        </div>
+
+        <div class="flex">
+            <span class="text-sm mr-1" [ngClass]="{ 'text-green-500': product!.price > product!.discountPercentage, 'text-red-500': !(product!.price > product!.discountPercentage) }">
+                {{ descuento(product!.price, product!.discountPercentage) | noneDecimal }}%
+            </span>
+            <span class="text-sm line-through"> ${{ product?.price }} </span>
+        </div>
+        <span class="cart-price text-[14px] block mt-[5px]"><span class="text-[#777] font-semibold text-[16px]"></span></span>
+        <span class="cart-price text-[14px] block mt-[5px]"
+            ><span class="text-[#777] font-semibold text-[16px]">${{ product?.discountPercentage }}</span></span
+        >
+        <div class="flex items-center justify-start w-3/4 mt-3">
+            <p-fluid class="flex flex-wrap gap-4">
+                <div class="flex-auto">
+                    <p-inputnumber
+                        [(ngModel)]="product!.quantity"
+                        (ngModelChange)="updateQuantity($event)"
+                        [showButtons]="true"
+                        buttonLayout="horizontal"
+                        inputId="horizontal"
+                        spinnerMode="horizontal"
+                        inputStyleClass="text-center h-7 !text-sm font-semibold"
+                        decrementButtonClass="!size-7"
+                        incrementButtonClass="!size-7"
+                        allowEmpty="false"
+                        [step]="1"
+                        min="1"
+                        [max]="product?.stock"
+                    >
+                        <ng-template #incrementbuttonicon>
+                            <span class="pi pi-plus !text-xs"></span>
+                        </ng-template>
+                        <ng-template #decrementbuttonicon>
+                            <span class="pi pi-minus !text-xs"></span>
+                        </ng-template>
+                    </p-inputnumber>
+                </div>
+            </p-fluid>
+        </div>
+        <a class="remove leading-[15px] absolute top-[0] right-[0] pl-[10px] text-[#ff0000] text-[22px] cursor-pointer hover:scale-125 transition-transform duration-300" (click)="eliminarDelCarrito()"> × </a>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo principal blanco -->
+  <rect width="1440" height="1024" fill="white"/>
+  <!-- Onda superior -->
+  <path d="M0 0H1440V989C1440 1008.33 1424.33 1024 1405 1024H35C15.67 1024 0 1008.33 0 989V0Z" fill="#B3D9C6"/>
+  <!-- Onda intermedia superior -->
+  <path d="M0 60C200 100 350 150 550 120C750 90 1000 50 1440 200V0H0V60Z" fill="#C6E3D4" fill-opacity="0.6"/>
+  <!-- Onda inferior -->
+  <path d="M0 1024C250 900 650 870 1000 980C1300 1070 1440 950 1440 950V1024H0Z" fill="#059669" fill-opacity="0.8"/>
+  <!-- Manchas suaves -->
+  <ellipse cx="140" cy="100" rx="300" ry="120" fill="#059669" fill-opacity="0.25"/>
+  <ellipse cx="1300" cy="940" rx="250" ry="100" fill="#059669" fill-opacity="0.18"/>
+</svg>

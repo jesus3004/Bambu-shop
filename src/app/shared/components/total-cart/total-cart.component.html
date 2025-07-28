@@ -1,0 +1,22 @@
+<div class="p-4 text-sm text-gray-700">
+  <ng-container *ngIf="cart$ | async as cart">
+    <div class="flex justify-between mb-2">
+      <span class="font-medium">Sub-Total :</span>
+      <span class="font-bold">${{ getSubtotal(cart) | twoDecimal }}</span>
+    </div>
+    <div class="flex justify-between mb-2">
+      <span class="font-medium">IVA (16%) :</span>
+      <span class="font-bold text-yellow-600">${{ getVAT(getSubtotal(cart)) | twoDecimal }}</span>
+    </div>
+    <div class="flex justify-between mb-4">
+      <span class="font-semibold text-lg">Total :</span>
+      <span class="font-extrabold text-lg text-green-700">${{ getTotal(getSubtotal(cart), getVAT(getSubtotal(cart))) | twoDecimal }}</span>
+    </div>
+
+    <div class="flex justify-between gap-2">
+      <a [routerLink]="['/Bambu-shop/cart']"  (click)="closeDrawer.emit()" class="flex-1 bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 text-center rounded">
+        VER CARRITO
+      </a>
+    </div>
+  </ng-container>
+</div>

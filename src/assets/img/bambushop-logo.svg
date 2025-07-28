@@ -1,0 +1,15 @@
+
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="app-logo-normal">
+  <!-- Bolsa de compras -->
+  <rect x="10" y="10" width="40" height="40" rx="5" ry="5" stroke="#FF7F00" stroke-width="4" fill="none"/>
+  <path d="M15 10 C15 5, 45 5, 45 10" stroke="#FF7F00" stroke-width="4" fill="none"/>
+
+  <!-- Bambú -->
+  <rect x="23" y="20" width="4" height="10" fill="#228B22"/>
+  <rect x="23" y="32" width="4" height="10" fill="#228B22"/>
+  <path d="M25 25 Q28 22, 30 26" stroke="#228B22" stroke-width="2" fill="none"/>
+  <path d="M25 30 Q20 27, 20 32" stroke="#228B22" stroke-width="2" fill="none"/>
+
+  <!-- Texto BambuShop -->
+  <text x="60" y="38" font-family="Arial, sans-serif" font-size="20" fill="#228B22">BambuShop</text>
+</svg>

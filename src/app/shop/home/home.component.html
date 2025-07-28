@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-8">
+
+  <!-- Carrusel de categorías -->
+  <div class="w-full">
+    <p-carousel [value]="categories" [numVisible]="5" [responsiveOptions]="responsiveOptions" [numScroll]="1" [circular]="false" [autoplayInterval]="0" [showNavigators]="true" [showIndicators]="false">
+      <ng-template pTemplate="item" let-category>
+        <div class="p-2 h-full">
+            <app-category [active]="category.slug === selectedCategorySlug" [category]="category" (categorySelected)="onCategorySelected($event)"></app-category>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <!-- Productos -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div *ngFor="let product of paginatedProducts">
+      <app-product-cart [product]="product" fromURL="Bambu-shop"></app-product-cart>
+    </div>
+  </div>
+
+  <!-- Paginador -->
+  <div class="grid grid-cols-1 w-full">
+    <div class="flex w-full mt-4">
+      <p-paginator *ngIf="products.length > 0" [rows]="rows" [totalRecords]="products.length"
+        (onPageChange)="onPageChange($event)" styleClass="custom-paginator w-full"
+        [showCurrentPageReport]="true" [showPageLinks]="true" [showJumpToPageDropdown]="false"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos" class="w-full">
+      </p-paginator>
+    </div>
+  </div>
+</div>

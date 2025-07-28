@@ -1,0 +1,18 @@
+<div
+  (click)="onClick()"
+  [ngClass]="{
+    'border border-emerald-500 ring-2 ring-emerald-200': active,
+    'hover:shadow-lg hover:-translate-y-1': !active
+  }"
+  class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer"
+>
+  <div class="mb-4">
+    <img
+      [src]="'/img/Category-Icon/' + category.slug + '.webp'"
+      [alt]="category.name"
+      class="w-20 object-contain"
+    />
+  </div>
+  <h3 class="text-gray-700 font-semibold text-lg text-center">{{ category.name }}</h3>
+  <p class="text-gray-500 text-sm mt-1 text-center">{{ productCount }} Items</p>
+</div>

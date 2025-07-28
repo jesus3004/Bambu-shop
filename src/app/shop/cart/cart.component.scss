@@ -1,0 +1,39 @@
+:host ::ng-deep .custom-carousel {
+  position: relative;
+
+  .p-carousel-prev,
+  .p-carousel-next {
+    background-color: white;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 48px;
+    height: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .p-carousel-prev:hover,
+  .p-carousel-next:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .p-carousel-prev {
+    left: -24px;
+  }
+
+  .p-carousel-next {
+    right: -24px;
+  }
+
+  .p-carousel-prev .pi,
+  .p-carousel-next .pi {
+    font-size: 1.25rem;
+    color: #333;
+  }
+}
