@@ -9,7 +9,6 @@ Puedes probar la aplicación en el siguiente enlace:
 ```bash
 https://ecomers---bambu-mobile.firebaseapp.com/Bambu-shop
    ```
----
 ## 📁 Pasos para ejecutar el proyecto localmente
 
 1. Clona el repositorio:
