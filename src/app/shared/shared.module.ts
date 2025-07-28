@@ -24,6 +24,7 @@ import { TotalCartComponent } from "./components/total-cart/total-cart.component
 import { CategoryComponent } from "./components/category/category.component";
 import { LangSwitcherComponent } from "./components/lang-switcher/lang-switcher.component";
 import { TranslateModule } from '@ngx-translate/core';
+import { LangSwitcherMobileComponent } from './components/lang-switcher-mobile/lang-switcher-mobile.component';
 @NgModule({
     declarations: [
         ProductCartComponent,
@@ -31,7 +32,8 @@ import { TranslateModule } from '@ngx-translate/core';
         SherchComponent,
         TotalCartComponent,
         CategoryComponent,
-        LangSwitcherComponent
+        LangSwitcherComponent,
+        LangSwitcherMobileComponent
     ],
     imports: [
         ShortDatePipe,
@@ -60,7 +62,9 @@ import { TranslateModule } from '@ngx-translate/core';
         SherchComponent,
         TotalCartComponent,
         CategoryComponent,
-        LangSwitcherComponent
+        LangSwitcherComponent,
+        LangSwitcherMobileComponent
+
     ]
 })
 export class SharedModule {}

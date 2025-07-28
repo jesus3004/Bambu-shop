@@ -5,10 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
     selector: 'app-lang-switcher',
     standalone: false,
     template: `
-        <div *ngIf="es_mobil" class="flex flex-row items-center" (click)="toggleLanguage()">
-            <img src="img/flag/flag_placeholder.png" class="flag flag-{{ 'lang.icon' | translate }} h-4" style="width:21px" />
-        </div>
-        <div *ngIf="!es_mobil" class="flex flex-row items-center" (click)="toggleLanguage()">
+        <div class="flex flex-row items-center" (click)="toggleLanguage()">
             <img src="img/flag/flag_placeholder.png" class="flag flag-{{ 'lang.icon' | translate }} h-4" style="width:21px" />
             <span class="ml-2">{{ 'lang.switch' | translate }}</span>
         </div>

@@ -139,10 +139,10 @@ import { TranslateModule } from '@ngx-translate/core';
                     <div class="relative cursor-pointer" (click)="logout()" title="{{ 'account.logout' | translate }}">
                         <i class="pi pi-sign-out text-2xl"></i>
                     </div>
-                    <div class="relative cursor-pointer" title="{{ 'lang.label' | translate }}">
-                        <app-lang-switcher [es_mobil]="true"></app-lang-switcher>
-                    </div>
                 </ng-template>
+                <div class="relative cursor-pointer" title="{{ 'lang.label' | translate }}">
+                    <app-lang-switcher-mobile></app-lang-switcher-mobile>
+                </div>
             </div>
         </div>
 
