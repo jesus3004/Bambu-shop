@@ -3,7 +3,12 @@
 **Bambu Shop** es una tienda e-commerce moderna desarrollada con **Angular 19**, **Firebase** y **Tailwind CSS v3**. Permite a los usuarios explorar productos, añadirlos al carrito o wishlist, registrarse, iniciar sesión, y mucho más. Soporta verificación por correo electrónico e internacionalización (ngx-translate).
 
 ---
+## 🚀 Demo en vivo
 
+Puedes probar la aplicación en el siguiente enlace:
+
+👉 [https://ecomers---bambu-mobile.firebaseapp.com/Bambu-shop](https://ecomers---bambu-mobile.firebaseapp.com/Bambu-shop)
+---
 ## 📁 Pasos para ejecutar el proyecto localmente
 
 1. Clona el repositorio:
