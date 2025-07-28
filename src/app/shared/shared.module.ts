@@ -22,13 +22,16 @@ import { ProductCartComponent } from "./components/product-cart/product-cart.com
 import { SherchComponent } from "./components/sherch/sherch.component";
 import { TotalCartComponent } from "./components/total-cart/total-cart.component";
 import { CategoryComponent } from "./components/category/category.component";
+import { LangSwitcherComponent } from "./components/lang-switcher/lang-switcher.component";
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
     declarations: [
         ProductCartComponent,
         ProductCarComponent,
         SherchComponent,
         TotalCartComponent,
-        CategoryComponent
+        CategoryComponent,
+        LangSwitcherComponent
     ],
     imports: [
         ShortDatePipe,
@@ -45,6 +48,7 @@ import { CategoryComponent } from "./components/category/category.component";
         InputTextModule,
         InputGroupModule,
         InputGroupAddonModule,
+        TranslateModule,
     ],
     exports:[
         ProductCarComponent,
@@ -55,7 +59,8 @@ import { CategoryComponent } from "./components/category/category.component";
         TwoDecimalPipe,
         SherchComponent,
         TotalCartComponent,
-        CategoryComponent
+        CategoryComponent,
+        LangSwitcherComponent
     ]
 })
 export class SharedModule {}

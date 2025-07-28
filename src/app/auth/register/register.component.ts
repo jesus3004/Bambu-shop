@@ -28,7 +28,7 @@ export class RegisterComponent {
     };
 
     password: string = '';
-    termsAccepted: boolean = false;
+    termsAccepted: boolean = true;
 
     constructor(
         private authService: AuthService,
@@ -48,12 +48,11 @@ export class RegisterComponent {
             municipality: [, Validators.required],
             street: [, Validators.required],
             suburb: [, Validators.required],
-            termsAccepted: [false, Validators.requiredTrue]
+            termsAccepted: [true, Validators.requiredTrue]
         });
     }
 
     async registerUser() {
-        this.messageService.add({ severity: 'info', summary: 'Entrando', detail: 'prueba', life: 3000 });
         this.user.email = this.form_register.value.email;
         this.user.name = this.form_register.value.name;
         this.user.lastname = this.form_register.value.lastname;

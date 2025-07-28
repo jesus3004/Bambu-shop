@@ -10,11 +10,38 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
+import { importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(appRoutes, withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }), withEnabledBlockingInitialNavigation()),
         provideHttpClient(withFetch()),
+        importProvidersFrom([TranslateModule.forRoot()]),
+        provideTranslateHttpLoader({
+            prefix: './i18n/',
+            suffix: '.json'
+        }),
         provideAnimationsAsync(),
-        providePrimeNG({ theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } } }), provideFirebaseApp(() => initializeApp({ projectId: "ecomers---bambu-mobile", appId: "1:94543234960:web:d4aca7041986201fe6d515", storageBucket: "ecomers---bambu-mobile.firebasestorage.app", apiKey: "AIzaSyDYNYkPPvsgX138ZLBdUK8JWD-LRbs00rs", authDomain: "ecomers---bambu-mobile.firebaseapp.com", messagingSenderId: "94543234960", measurementId: "G-XD71T03ZJQ" })), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideFirestore(() => getFirestore())
+        providePrimeNG({ theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } } }),
+        provideFirebaseApp(() =>
+            initializeApp({
+                projectId: 'ecomers---bambu-mobile',
+                appId: '1:94543234960:web:d4aca7041986201fe6d515',
+                storageBucket: 'ecomers---bambu-mobile.firebasestorage.app',
+                apiKey: 'AIzaSyDYNYkPPvsgX138ZLBdUK8JWD-LRbs00rs',
+                authDomain: 'ecomers---bambu-mobile.firebaseapp.com',
+                messagingSenderId: '94543234960',
+                measurementId: 'G-XD71T03ZJQ'
+            })
+        ),
+        provideAuth(() => getAuth()),
+        provideAnalytics(() => getAnalytics()),
+        ScreenTrackingService,
+        UserTrackingService,
+        provideFirestore(() => getFirestore())
     ]
 };

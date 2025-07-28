@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppLayout } from '@/layout/components/app.layout';
-import { Notfound } from '@/pages/notfound/notfound';
+import { Notfound } from '@/pages/notfound';
 
 export const appRoutes: Routes = [
     {

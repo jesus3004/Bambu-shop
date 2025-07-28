@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
     standalone: false,
     template: `
         <p-inputgroup styleClass="w-full">
-            <input pInputText placeholder="Buscar productos, marcas y más..." [(ngModel)]="searchTerm" (keydown.enter)="onSearch()"/>
+            <input pInputText placeholder="{{'search.placeholder'|translate}}" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()"/>
             <p-inputgroup-addon>
                 <p-button icon="pi pi-search" severity="secondary"   variant="text" (click)="onSearch()" />
             </p-inputgroup-addon>

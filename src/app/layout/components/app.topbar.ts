@@ -3,7 +3,6 @@ import { NavigationEnd, Router, RouterLink, RouterModule } from '@angular/router
 import { CommonModule, NgClass } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { LayoutService } from '@/layout/service/layout.service';
-import { AppBreadcrumb } from './app.breadcrumb';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -20,78 +19,88 @@ import { CartService } from '../../core/cart.service';
 import { WishListService } from '../../core/wish-list.service';
 import { UserService } from '../../core/user.service';
 import { CartItem } from '../../models/cart-item.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-topbar',
     standalone: true,
-    imports: [RouterModule, CommonModule, StyleClassModule, InputTextModule, ButtonModule, IconFieldModule, InputIconModule, AvatarModule, SharedModule, DrawerModule, TieredMenuModule, RouterLink],
+    imports: [RouterModule, CommonModule, StyleClassModule, InputTextModule, ButtonModule, IconFieldModule, InputIconModule, AvatarModule, SharedModule, DrawerModule, TieredMenuModule, RouterLink, TranslateModule],
     template: `
         <div class="hidden lg:flex">
             <div class="flex items-center gap-8 md:px-1 lg:px-5">
                 <ng-container *ngIf="!(authService.user$ | async); else userLogged">
+                    <!-- Iniciar sesión -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" [routerLink]="['/auth/login']">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-user scale-150"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs">Account</span>
-                            <span class="font-semibold text-gray-500 text-sm">Iniciar sesión</span>
+                            <span class="text-xs">{{ 'account.title' | translate }}</span>
+                            <span class="font-semibold text-gray-500 text-sm">{{ 'account.login' | translate }}</span>
                         </div>
                     </div>
 
+                    <!-- Registrarse -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" [routerLink]="['/auth/register']">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-user-plus scale-150"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs">Account</span>
-                            <span class="font-semibold text-gray-500 text-sm">Registrarse</span>
+                            <span class="text-xs">{{ 'account.title' | translate }}</span>
+                            <span class="font-semibold text-gray-500 text-sm">{{ 'account.register' | translate }}</span>
                         </div>
                     </div>
                 </ng-container>
+
                 <ng-template #userLogged>
+                    <!-- Bienvenida -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-user scale-150"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs">Benvenido</span>
-                            <span class="font-semibold text-gray-500 text-sm">
-                                {{ userName }}
-                            </span>
+                            <span class="text-xs">{{ 'account.welcome' | translate }}</span>
+                            <span class="font-semibold text-gray-500 text-sm">{{ userName }}</span>
                         </div>
                     </div>
+
+                    <!-- Wishlist -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" [routerLink]="['/Bambu-shop/wish']">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-heart scale-150"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs">Wishlist</span>
-                            <span class="font-semibold text-gray-500 text-sm" *ngIf="(state.wishlist$ | async)?.length as count">{{ count }}-ITEMS</span>
+                            <span class="text-xs">{{ 'wishlist_top.label' | translate }}</span>
+                            <span class="font-semibold text-gray-500 text-sm" *ngIf="(state.wishlist$ | async)?.length as count"> {{ count }} {{ 'cart_top.items' | translate }} </span>
                         </div>
                     </div>
+
+                    <!-- Carrito -->
                     <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-emerald-500 transition-all duration-300 cursor-pointer" (click)="carrito_draw = true">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-shopping-cart scale-150"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs">Cart</span>
-                            <span class="font-semibold text-gray-500 text-sm" *ngIf="(state.cart$ | async)?.length as count">{{ count }}-ITEMS</span>
+                            <span class="text-xs">{{ 'cart_top.title' | translate }}</span>
+                            <span class="font-semibold text-gray-500 text-sm" *ngIf="(state.cart$ | async)?.length as count"> {{ count }} {{ 'cart_top.items' | translate }} </span>
                         </div>
                     </div>
 
-                    
-
-                    <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-red-600 transition-all duration-300 cursor-pointer" (click)="logout()" title="Cerrar sesión">
+                    <!-- Cerrar sesión -->
+                    <div class="flex flex-row items-center gap-1 text-gray-500 hover:text-red-600 transition-all duration-300 cursor-pointer" (click)="logout()" title="{{ 'account.logout' | translate }}">
                         <div class="flex flex-col text-2xl text-center mr-2">
                             <i class="pi pi-sign-out scale-150"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs">Salir</span>
-                            <span class="font-semibold text-gray-500 text-sm">Cerrar sesión</span>
+                            <span class="text-xs">{{ 'account.exit' | translate }}</span>
+                            <span class="font-semibold text-gray-500 text-sm">{{ 'account.logout' | translate }}</span>
                         </div>
                     </div>
                 </ng-template>
+
+                <div class="rounded-xl py-2 text-color hover:text-emerald-600 cursor-pointer" title="{{ 'lang.label' | translate }}">
+                            <app-lang-switcher class="w-full"></app-lang-switcher>
+                        </div>
             </div>
         </div>
 
@@ -127,17 +136,21 @@ import { CartItem } from '../../models/cart-item.model';
                         </span>
                     </div>
 
-                    <div class="relative cursor-pointer" (click)="logout()" title="Cerrar sesión">
+                    <div class="relative cursor-pointer" (click)="logout()" title="{{ 'account.logout' | translate }}">
                         <i class="pi pi-sign-out text-2xl"></i>
+                    </div>
+                    <div class="relative cursor-pointer" title="{{ 'lang.label' | translate }}">
+                        <app-lang-switcher [es_mobil]="true"></app-lang-switcher>
                     </div>
                 </ng-template>
             </div>
         </div>
+
         <p-drawer [(visible)]="carrito_draw" position="right" styleClass="!w-[350px] !max-[480px]:!w-[300px] !pt-[15px] !px-[20px] !text-[14px] !bg-[#fff]">
             <ng-template #headless>
                 <div class="flex flex-col h-full ">
                     <div class="gi-cart-title w-full flex flex-wrap justify-between">
-                        <span class="cart_title text-[15px] text-[#4b5966] font-Poppins font-semibold mb-[20px]">Carrito de compras</span>
+                        <span class="cart_title text-[15px] text-[#4b5966] font-Poppins font-semibold mb-[20px]">{{'cart.title'|translate}}</span>
                         <span class="gi-cart-close relative border-[0] text-[30px] leading-[20px] text-[#4b5966]">
                             <p-button type="button" (click)="carrito_draw = false" icon="pi pi-times" rounded="true" outlined="true" styleClass="h-8 w-8"></p-button>
                         </span>
@@ -150,7 +163,7 @@ import { CartItem } from '../../models/cart-item.model';
                             <ng-template #emptyCart>
                                 <div class="flex flex-col items-center justify-center h-full  text-center">
                                     <i class="pi pi-shopping-cart text-6xl mb-4 text-green-500" style="font-size: 3.75em;"></i>
-                                    <p class="text-xl font-semibold text-gray-500">Tu carrito está vacío</p>
+                                    <p class="text-xl font-semibold text-gray-500">{{'cart.empty_title' | translate}}</p>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -165,6 +178,7 @@ import { CartItem } from '../../models/cart-item.model';
     `
 })
 export class AppTopbar {
+    currentLang: string = 'es';
     carrito_draw: boolean = false;
     products: Observable<CartItem[]>;
     userName: string = '';

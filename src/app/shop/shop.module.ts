@@ -25,6 +25,7 @@ import { WishComponent } from './wish/wish.component';
 import { TableModule } from 'primeng/table';
 import { AccordionModule } from 'primeng/accordion';
 import { DividerModule } from 'primeng/divider';
+import { TranslateModule } from "@ngx-translate/core";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { DividerModule } from 'primeng/divider';
     Fluid,
     TableModule,
     AccordionModule,
-    DividerModule
+    DividerModule,
+    TranslateModule
     
 ]
 })

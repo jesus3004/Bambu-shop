@@ -1,49 +1,54 @@
 <div class="container mx-auto px-4 py-10 min-h-screen">
-    <h1 class="text-3xl font-bold mb-8 text-surface-900">Mi Lista de Deseos</h1>
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-surface-900">{{ 'wishlist.title' | translate }}</h1>
+  </div>
 
-    <div *ngIf="wishlist$ | async as wishlist">
-        <div *ngIf="wishlist.length > 0; else emptyWishlist">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div *ngFor="let item of paginatedProducts" class="relative group">
-                    <app-product-cart [product]="item" fromURL="/Bambu-shop/wish"></app-product-cart>
-                    <i
-                        class="pi absolute top-4 right-4 z-10 scale-110 text-red-600 duration-300 hover:scale-150 transition-transform select-none pointer-events-auto inline-block"
-                        (click)="addFavorite(item!)"
-                        [ngClass]="{
-                            'pi-trash': true
-                        }"
-                    ></i>
-                </div>
-            </div>
+  <div *ngIf="wishlist$ | async as wishlist">
+    <div *ngIf="wishlist.length > 0; else emptyWishlist">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div *ngFor="let item of paginatedProducts" class="relative group">
+          <app-product-cart [product]="item" fromURL="/Bambu-shop/wish"></app-product-cart>
+          <i
+            class="pi absolute top-4 right-4 z-10 scale-110 text-red-600 duration-300 hover:scale-150 transition-transform select-none pointer-events-auto inline-block"
+            (click)="addFavorite(item!)"
+            [ngClass]="{ 'pi-trash': true }"
+          ></i>
         </div>
-
-        <ng-template #emptyWishlist>
-            <div class="text-center py-20">
-                <i class="pi pi-heart text-emerald-400 mb-6" style="font-size: 60px"></i>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">Tu lista está vacía</h2>
-                <p class="text-gray-500 mb-6">Explora productos y agrégalos a tu lista de deseos.</p>
-                <a routerLink="/" class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition-all duration-300"> Ir a la tienda </a>
-            </div>
-        </ng-template>
+      </div>
     </div>
+
+    <ng-template #emptyWishlist>
+      <div class="text-center py-20">
+        <i class="pi pi-heart text-emerald-400 mb-6" style="font-size: 60px"></i>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ 'wishlist.empty_title' | translate }}</h2>
+        <p class="text-gray-500 mb-6">{{ 'wishlist.empty_text' | translate }}</p>
+        <a
+          routerLink="/"
+          class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition-all duration-300"
+        >
+          {{ 'cart.back_store' | translate }}
+        </a>
+      </div>
+    </ng-template>
+  </div>
 </div>
 
 <div class="flex flex-col gap-8">
-    <div class="grid grid-cols-1 w-full">
-        <div class="flex w-full mt-4">
-            <p-paginator
-                *ngIf="wishlistArray.length > 0"
-                [rows]="rows"
-                [totalRecords]="wishlistArray.length"
-                (onPageChange)="onPageChange($event)"
-                styleClass="custom-paginator w-full"
-                [showCurrentPageReport]="true"
-                [showPageLinks]="true"
-                [showJumpToPageDropdown]="false"
-                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
-                class="w-full"
-            >
-            </p-paginator>
-        </div>
+  <div class="grid grid-cols-1 w-full">
+    <div class="flex w-full mt-4">
+      <p-paginator
+        *ngIf="wishlistArray.length > 0"
+        [rows]="rows"
+        [totalRecords]="wishlistArray.length"
+        (onPageChange)="onPageChange($event)"
+        styleClass="custom-paginator w-full"
+        [showCurrentPageReport]="true"
+        [showPageLinks]="true"
+        [showJumpToPageDropdown]="false"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
+        class="w-full"
+      >
+      </p-paginator>
     </div>
+  </div>
 </div>

@@ -1,109 +1,114 @@
 <div class="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
-    <div *ngIf="cartItems.length > 0; else emptyCartWrapper" class="lg:col-span-8 order-2 lg:order-1">
-        <p-table *ngIf="cartItems.length > 0;" [value]="cartItems" responsiveLayout="scroll" scrollHeight="flex" class="min-w-full">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="min-width: 15rem">Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-item>
-                <tr>
-                    <td class="flex items-center gap-3">
-                        <img [src]="item.thumbnail" class="w-12 h-12 object-cover rounded" alt="" />
-                        <span>{{ item.title }}</span>
-                    </td>
-                    <td>${{ item.price | twoDecimal }}</td>
-                    <td>
-                        <div class="flex items-center gap-2">
-                            <p-inputNumber
-                                [(ngModel)]="item.quantity"
-                                [min]="1"
-                                [max]="item.stock"
-                                [step]="1"
-                                [showButtons]="true"
-                                [buttonLayout]="'stacked'"
-                                inputStyleClass="w-[80px] pointer-events-none"
-                                styleClass="w-[80px]"
-                                [showClear]="false"
-                                (onInput)="actualizarCantidad(item, item.quantity)"
-                            ></p-inputNumber>
-                        </div>
-                    </td>
-                    <td>${{ item.price * item.quantity | twoDecimal }}</td>
-                    <td>
-                        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text text-red-500" (click)="eliminarItem(item.id)"></button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+  <div *ngIf="cartItems.length > 0; else emptyCartWrapper" class="lg:col-span-8 order-2 lg:order-1">
+    <p-table [value]="cartItems" responsiveLayout="scroll" scrollHeight="flex" class="min-w-full">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ 'cart.product' | translate }}</th>
+          <th>{{ 'cart.price' | translate }}</th>
+          <th>{{ 'cart.quantity' | translate }}</th>
+          <th>{{ 'cart.total' | translate }}</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td class="flex items-center gap-3">
+            <img [src]="item.thumbnail" class="w-12 h-12 object-cover rounded" />
+            <span>{{ item.title }}</span>
+          </td>
+          <td>${{ item.price | twoDecimal }}</td>
+          <td>
+            <p-inputNumber [(ngModel)]="item.quantity" [min]="1" [max]="item.stock" [step]="1" [showButtons]="true"
+              buttonLayout="stacked" inputStyleClass="w-[80px]" [showClear]="false"
+              (onInput)="actualizarCantidad(item, item.quantity)">
+            </p-inputNumber>
+          </td>
+          <td>${{ item.price * item.quantity | twoDecimal }}</td>
+          <td>
+            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text text-red-500"
+              (click)="eliminarItem(item.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
 
-        <div *ngIf="cartItems.length > 0" class="flex flex-col-reverse lg:flex-row justify-between items-center mt-6 gap-4">
-            <a routerLink="/" class="text-lg text-gray-600 underline">Seguir comprando</a>
+    <div class="flex flex-col-reverse lg:flex-row justify-between items-center mt-6 gap-4">
+      <a routerLink="/" class="text-lg text-gray-600 underline">{{ 'cart.keep_shopping' | translate }}</a>
 
-            <div class="lg:hidden w-full">
-                <div class="bg-white shadow rounded-lg p-6 border">
-                    <h2 class="text-lg font-semibold mb-4">Resumen</h2>
-                    <div class="text-sm space-y-3">
-                        <div class="flex justify-between">
-                            <span>Sub-Total</span>
-                            <span class="font-medium">${{ subtotal | twoDecimal }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Costo de Envío</span>
-                            <span class="font-medium">${{ shippingCost | twoDecimal }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Descuento</span>
-                            <a class="text-green-500 cursor-pointer font-medium" (click)="aplicarCupon()">Aplicar cupón</a>
-                        </div>
-                    </div>
-                    <p-divider class="my-4"></p-divider>
-                    <div class="flex justify-between font-semibold">
-                        <span>Total</span>
-                        <span>${{ total | twoDecimal }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <button pButton label="Finalizar Compra" class="p-button-success w-full lg:w-auto"></button>
-        </div>
-
-        
-    </div>
-
-    <div *ngIf="cartItems.length > 0" class="lg:col-span-4 hidden lg:block order-1 lg:order-2">
+      <div class="lg:hidden w-full">
         <div class="bg-white shadow rounded-lg p-6 border">
-            <h2 class="text-lg font-semibold mb-4">Resumen</h2>
-            <div class="text-sm space-y-3">
-                <div class="flex justify-between">
-                    <span>Sub-Total</span>
-                    <span class="font-medium">${{ subtotal | twoDecimal }}</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Costo de Envío</span>
-                    <span class="font-medium">${{ shippingCost | twoDecimal }}</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>IVA (16%)</span>
-                    <span class="font-medium">${{ iva | twoDecimal }}</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Descuento</span>
-                    <span class="font-medium">-${{ descuento | twoDecimal }}</span>
-                </div>
+          <h2 class="text-lg font-semibold mb-4">{{ 'cart.title' | translate }}</h2>
+          <div class="text-sm space-y-3">
+            <div class="flex justify-between">
+              <span>{{ 'cart.subtotal' | translate }}</span>
+              <span class="font-medium">${{ subtotal | twoDecimal }}</span>
             </div>
-            <p-divider class="my-4"></p-divider>
-            <div class="flex justify-between font-semibold">
-                <span>Total</span>
-                <span>${{ total | twoDecimal }}</span>
+            <div class="flex justify-between">
+              <span>{{ 'cart.shipping' | translate }}</span>
+              <span class="font-medium">${{ shippingCost | twoDecimal }}</span>
             </div>
+            <div class="flex justify-between">
+              <span>{{ 'cart.discount' | translate }}</span>
+              <a class="text-green-500 cursor-pointer font-medium" (click)="aplicarCupon()">
+                {{ 'cart.apply_coupon' | translate }}
+              </a>
+            </div>
+          </div>
+          <p-divider class="my-4"></p-divider>
+          <div class="flex justify-between font-semibold">
+            <span>{{ 'cart.total' | translate }}</span>
+            <span>${{ total | twoDecimal }}</span>
+          </div>
         </div>
+      </div>
+
+      <button pButton label="{{ 'cart.checkout' | translate }}" class="p-button-success w-full lg:w-auto"></button>
     </div>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="lg:col-span-4 hidden lg:block order-1 lg:order-2">
+    <div class="bg-white shadow rounded-lg p-6 border">
+      <h2 class="text-lg font-semibold mb-4">{{ 'cart.title' | translate }}</h2>
+      <div class="text-sm space-y-3">
+        <div class="flex justify-between">
+          <span>{{ 'cart.subtotal' | translate }}</span>
+          <span class="font-medium">${{ subtotal | twoDecimal }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>{{ 'cart.shipping' | translate }}</span>
+          <span class="font-medium">${{ shippingCost | twoDecimal }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>{{ 'cart.iva' | translate }}</span>
+          <span class="font-medium">${{ iva | twoDecimal }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>{{ 'cart.discount' | translate }}</span>
+          <span class="font-medium">-${{ descuento | twoDecimal }}</span>
+        </div>
+      </div>
+      <p-divider class="my-4"></p-divider>
+      <div class="flex justify-between font-semibold">
+        <span>{{ 'cart.total' | translate }}</span>
+        <span>${{ total | twoDecimal }}</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<ng-template #emptyCartWrapper>
+  <div class="lg:col-span-12 flex items-center justify-center min-h-[70vh] w-full">
+    <div class="bg-white rounded-xl shadow p-10 text-center w-full max-w-3xl">
+      <i class="pi pi-shopping-cart text-emerald-400 mb-6" style="font-size: 60px;"></i>
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ 'cart.empty_title' | translate }}</h2>
+      <p class="text-gray-500 mb-6">{{ 'cart.empty_text' | translate }}</p>
+      <a routerLink="/" class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600">
+        {{ 'cart.back_store' | translate }}
+      </a>
+    </div>
+  </div>
+</ng-template>
+
 
 <div class="container mx-auto px-4 py-16" *ngIf="recommendedProducts.length > 0">
     <div class="mt-10">
@@ -118,21 +123,3 @@
     </div>
 </div>
 
-
-<ng-template #emptyCartWrapper>
-  <div class="lg:col-span-12 order-2 lg:order-1 flex items-center justify-center min-h-[70vh] w-full">
-    <div class="bg-white rounded-xl shadow p-10 text-center max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl w-full">
-      <i class="pi pi-shopping-cart text-emerald-400 mb-6" style="font-size: 60px;"></i>
-      <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Tu carrito está vacío!</h2>
-      <p class="text-gray-500 mb-6">
-        Parece que aún no has agregado productos. Explora nuestros artículos y encuentra lo que necesitas.
-      </p>
-      <a
-        routerLink="/"
-        class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition-all duration-300"
-      >
-        Ir a la tienda
-      </a>
-    </div>
-  </div>
-</ng-template>

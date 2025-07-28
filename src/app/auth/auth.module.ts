@@ -14,10 +14,11 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import {RippleModule} from "primeng/ripple";
 import { ToastModule } from 'primeng/toast';
+import { TranslateModule } from '@ngx-translate/core';
 
 
-import { AppConfigurator } from '../layout/components/app.configurator';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { SharedModule } from "@/shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -26,19 +27,20 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     ForgotpasswordComponent
   ],
     imports: [
-        CommonModule,
-        FormsModule,
-        AuthRouting,
-        CheckboxModule,
-        InputTextModule,
-        IconFieldModule,
-        InputIconModule,
-        ButtonModule,
-        PasswordModule,
-        RippleModule,
-        AppConfigurator,
-        ReactiveFormsModule,
-        ToastModule
-    ]
+    CommonModule,
+    FormsModule,
+    AuthRouting,
+    CheckboxModule,
+    InputTextModule,
+    IconFieldModule,
+    InputIconModule,
+    ButtonModule,
+    PasswordModule,
+    RippleModule,
+    ReactiveFormsModule,
+    ToastModule,
+    TranslateModule,
+    SharedModule
+]
 })
 export class AuthModule {}
