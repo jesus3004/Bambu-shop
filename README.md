@@ -93,7 +93,8 @@ src/
 ├── app/
 │   ├── auth/              → Registro, login, recuperación de contraseña
 │   ├── core/              → Servicios globales como AuthService, CartService, StateService
-│   ├── pages/             → Páginas principales de la aplicación
+│   ├── shop/             → Páginas principales de la aplicación
+│   ├── page/             → Paginas generales para errores
 │   ├── shared/            → Componentes reutilizables y utilidades (pipes, directivas)
 │   └── app-routing.module.ts → Rutas con protección mediante guards (canActivate)
 ├── environments/          → Configuración de Firebase
@@ -108,7 +109,7 @@ También se implementó **lazy loading** para cargar módulos bajo demanda y **r
 Se utiliza `ngx-translate` para soportar múltiples idiomas. Los archivos de traducción están en:
 
 ```
-src/assets/i18n/
+public/i18n/
 ├── en.json
 ├── es.json
 ```
